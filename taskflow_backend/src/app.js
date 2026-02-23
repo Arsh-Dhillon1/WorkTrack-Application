@@ -17,4 +17,8 @@ const testRoutes = require('./routes/testRoutes');
 
 app.use('/api/test', testRoutes);
 
+const projectRoutes = require('./routes/projectRoutes');
+
+app.use('/api/projects', projectRoutes);
+
 module.exports = app;
