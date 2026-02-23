@@ -20,8 +20,7 @@ const updateTask = async (taskId, data, userId) => {
   const task = await Task.findOneAndUpdate(
     { _id: taskId, owner: userId },
     data,
-    { new: true }
-  );
+    { returnDocument: 'after' }  );
 
   return task;
 };
