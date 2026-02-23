@@ -13,4 +13,8 @@ app.get('/', (req, res) => {
   res.send('API Running');
 });
 
+const testRoutes = require('./routes/testRoutes');
+
+app.use('/api/test', testRoutes);
+
 module.exports = app;
