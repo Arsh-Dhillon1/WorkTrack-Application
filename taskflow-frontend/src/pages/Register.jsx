@@ -3,11 +3,12 @@ import { AuthContext } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 import { useNavigate, Link } from 'react-router-dom';
 
-function Login() {
-  const { login } = useContext(AuthContext);
+function Register() {
+  const { register } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
+    name: '',
     email: '',
     password: ''
   });
@@ -20,11 +21,11 @@ function Login() {
     e.preventDefault();
 
     try {
-      await login(form);
-      toast.success('Logged in successfully');
-      navigate('/');
+      await register(form);
+      toast.success('Registered successfully');
+      navigate('/login');
     } catch {
-      toast.error('Invalid credentials');
+      toast.error('Registration failed');
     }
   };
 
@@ -32,9 +33,16 @@ function Login() {
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="bg-white shadow-xl rounded-xl p-8 w-full max-w-md">
 
-        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
+
+          <input
+            name="name"
+            placeholder="Name"
+            onChange={handleChange}
+            className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
 
           <input
             name="email"
@@ -55,15 +63,15 @@ function Login() {
             type="submit"
             className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
           >
-            Login
+            Register
           </button>
 
         </form>
 
         <p className="mt-4 text-center text-sm">
-          Don’t have an account?{' '}
-          <Link to="/register" className="text-blue-600 hover:underline">
-            Register
+          Already have an account?{' '}
+          <Link to="/login" className="text-blue-600 hover:underline">
+            Login
           </Link>
         </p>
 
@@ -72,4 +80,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;
