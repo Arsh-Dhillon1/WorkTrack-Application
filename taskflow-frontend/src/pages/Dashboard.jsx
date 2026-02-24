@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
@@ -38,9 +39,9 @@ function Dashboard() {
       toast.error('Error creating project');
     }
   };
-
   return (
-    <div>
+    <div className="bg-red-500 min-h-screen">
+    <Link to="/profile">Go to Profile</Link>
       <h2>Dashboard</h2>
 
       {/* Create Project Form */}

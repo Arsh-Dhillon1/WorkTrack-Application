@@ -3,7 +3,9 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import ProjectDetails from './pages/ProjectDetails';
+import Profile from './pages/Profile';
 import ProtectedRoute from './components/ProtectedRoute';
+import EditTask from './pages/EditTask';
 
 function App() {
   return (
@@ -28,6 +30,25 @@ function App() {
           </ProtectedRoute>
         }
       />
+
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/tasks/:taskId/edit"
+        element={
+          <ProtectedRoute>
+            <EditTask />
+          </ProtectedRoute>
+        }
+      />
+
     </Routes>
   );
 }

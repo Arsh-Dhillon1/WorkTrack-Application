@@ -37,8 +37,26 @@ const updateTask = async (req, res) => {
   }
 };
 
+const getSingleTask = async (req, res) => {
+  try {
+    const task = await taskService.getSingleTask(
+      req.params.taskId,
+      req.user._id
+    );
+
+    if (!task) {
+      return res.status(404).json({ message: 'Task not found' });
+    }
+
+    res.status(200).json(task);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 module.exports = {
   createTask,
   getTasks,
-  updateTask
+  updateTask,
+  getSingleTask
 };

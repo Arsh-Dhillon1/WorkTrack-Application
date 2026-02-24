@@ -25,8 +25,16 @@ const updateTask = async (taskId, data, userId) => {
   return task;
 };
 
+const getSingleTask = async (taskId, userId) => {
+  return await Task.findOne({
+    _id: taskId,
+    owner: userId
+  });
+};
+
 module.exports = {
   createTask,
   getProjectTasks,
-  updateTask
+  updateTask,
+  getSingleTask
 };

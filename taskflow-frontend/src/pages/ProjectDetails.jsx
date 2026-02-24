@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import toast from 'react-hot-toast';
 
 function ProjectDetails() {
   const { projectId } = useParams();
+  const navigate = useNavigate();
 
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState('');
@@ -20,7 +21,7 @@ function ProjectDetails() {
 
   useEffect(() => {
     fetchTasks();
-  }, []);
+  }, [projectId]);
 
   const handleCreateTask = async (e) => {
     e.preventDefault();
@@ -60,7 +61,6 @@ function ProjectDetails() {
     <div>
       <h2>Project Tasks</h2>
 
-      {/* Create Task */}
       <form onSubmit={handleCreateTask}>
         <input
           placeholder="Task Title"
@@ -72,13 +72,21 @@ function ProjectDetails() {
 
       <hr />
 
-      {/* Task List */}
       <ul>
         {tasks.map((task) => (
           <li key={task._id}>
             {task.title} - {task.status}
+
+            <button
+              onClick={() => navigate(`/tasks/${task._id}/edit`)}
+            >
+              Edit
+            </button>
+
             {task.status !== 'done' && (
-              <button onClick={() => handleMarkDone(task._id)}>
+              <button
+                onClick={() => handleMarkDone(task._id)}
+              >
                 Mark Done
               </button>
             )}

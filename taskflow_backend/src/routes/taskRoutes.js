@@ -21,7 +21,15 @@ router.post(
   taskController.createTask
 );
 
+
+router.get(
+  '/single/:taskId',
+  protect,
+  taskController.getSingleTask
+);
+
 // Get Tasks by Project
+
 router.get(
   '/:projectId',
   [
