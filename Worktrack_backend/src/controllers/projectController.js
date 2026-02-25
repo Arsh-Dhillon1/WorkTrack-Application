@@ -1,3 +1,4 @@
+// Project CRUD operations logic
 const projectService = require('../services/projectService');
 
 const createProject = async (req, res) => {
